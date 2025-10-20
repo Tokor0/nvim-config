@@ -51,7 +51,11 @@
       enableTreesitter = true;
       enableExtraDiagnostics = true;
 
-      nix.enable = true;
+      nix = {
+        enable = true;
+        lsp.server = "nixd";
+        format.type = "nixfmt";
+      };
       typst = {
         enable = true;
         format.type = "typstyle";
@@ -61,13 +65,7 @@
       };
       python = {
         enable = true;
-        lsp = {
-          enable = true;
-          server = "pyright";
-        };
-        format = {
-          enable = true;
-        };
+        lsp.server = "pyright";
       };
     };
 

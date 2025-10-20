@@ -6,31 +6,31 @@
     nvf.url = "github:notashelf/nvf";
   };
 
-  outputs = inputs@{ flake-parts, ...}: let
+  outputs = inputs @ {flake-parts, ...}: let
     conf = ./configuration.nix;
-  in flake-parts.lib.mkFlake { inherit inputs; } {
+  in
+    flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [
         inputs.home-manager.flakeModules.home-manager
       ];
-      systems = [ "x86_64-linux" "aarch64-linux" ];
-      perSystem = { config, self', inputs', pkgs, system, ... }: {
-
-        packages.default = (inputs.nvf.lib.neovimConfiguration {
+      systems = ["x86_64-linux" "aarch64-linux"];
+      perSystem = {pkgs, ...}: {
+        packages.default =
+          (inputs.nvf.lib.neovimConfiguration {
             pkgs = pkgs;
-            modules = [ conf ];
+            modules = [conf];
           })
           .neovim;
-          
       };
       flake = {
-        nixosModules.default = { config, pkgs, lib, ... }: {
-          imports = [ inputs.nvf.nixosModules.default ];
+        nixosModules.default = {lib, ...}: {
+          imports = [inputs.nvf.nixosModules.default];
           config = {
             programs.nvf.settings = lib.mkDefault (import ./configuration.nix).config;
           };
         };
-        homeModules.default = { config, pkgs, lib, ... }: {
-          imports = [ inputs.nvf.homeManagerModules.default ];
+        homeModules.default = {...}: {
+          imports = [inputs.nvf.homeManagerModules.default];
           config = {
             programs.nvf.settings = (import ./configuration.nix).config;
           };
