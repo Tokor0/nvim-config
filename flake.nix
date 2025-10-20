@@ -1,21 +1,30 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    flake-parts.url = "github:hercules-ci/flake-parts";
     nvf.url = "github:notashelf/nvf";
   };
 
-  outputs = {nixpkgs, ...} @ inputs: {
-    packages.aarch64-linux = {
-      # Set the default package to the wrapped instance of Neovim.
-      # This will allow running your Neovim configuration with
-      # `nix run` and in addition, sharing your configuration with
-      # other users in case your repository is public.
-      default =
-        (inputs.nvf.lib.neovimConfiguration {
-          pkgs = nixpkgs.legacyPackages.aarch64-linux;
-          modules = [ ./configuration.nix ];
-        })
-        .neovim;
+  outputs = inputs@{ flake-parts, ...}: let
+    conf = ./configuration.nix;
+  in flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" "aarch64-linux" ];
+      perSystem = { config, self', inputs', pkgs, system, ... }: {
+
+        packages.default = (inputs.nvf.lib.neovimConfiguration {
+            pkgs = pkgs;
+            modules = [ conf ];
+          })
+          .neovim;
+          
+      };
+      flake = {
+        nixosModules.default = { config, pkgs, lib, ... }: {
+          imports = [ inputs.nvf.nixosModules.default ];
+          config = {
+            programs.nvf.settings = lib.mkDefault (import ./configuration.nix).config;
+          };
+        };
+      };
     };
-  };
 }
