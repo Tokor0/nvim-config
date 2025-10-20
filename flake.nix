@@ -32,7 +32,7 @@
         homeModules.default = { config, pkgs, lib, ... }: {
           imports = [ inputs.nvf.homeManagerModules.default ];
           config = {
-            programs.nvf.settings = lib.mkDefault (import ./configuration.nix).config;
+            programs.nvf.settings = (import ./configuration.nix).config;
           };
         };
       };
