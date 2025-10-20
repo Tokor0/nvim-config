@@ -22,7 +22,7 @@
           .neovim;
           
       };
-      #flake = {
+      flake = {
         nixosModules.default = { config, pkgs, lib, ... }: {
           imports = [ inputs.nvf.nixosModules.default ];
           config = {
@@ -35,6 +35,6 @@
             programs.nvf.settings = lib.mkDefault (import ./configuration.nix).config;
           };
         };
-      #};
+      };
     };
 }
