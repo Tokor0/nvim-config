@@ -43,11 +43,9 @@
             imports = [ inputs.nvf.homeManagerModules.default ];
             config = {
               programs.nvf.settings =
-                lib.evalModules
-                  {
-                    modules = [ conf ];
-                  }
-                  .config;
+                (lib.evalModules {
+                  modules = [ conf ];
+                }).config;
             };
           };
       };
