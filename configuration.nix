@@ -56,6 +56,9 @@
         lsp.server = "nixd";
         format.type = "nixfmt";
       };
+      rust = {
+        enable = true;
+      };
       typst = {
         enable = true;
         format.type = "typstyle";
