@@ -9,7 +9,7 @@
   outputs =
     inputs@{ flake-parts, ... }:
     let
-      conf = ./config;
+      conf = ./configuration.nix;
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
@@ -42,12 +42,7 @@
           {
             imports = [ inputs.nvf.homeManagerModules.default ];
             config = {
-              programs.nvf.settings = (lib.attrsets.mergeAttrsList [
-                import ./config/opts.nix
-                import ./config/ui.nix
-                import ./config/lang/lang.nix
-                import ./config/lang/lsp.nix
-              ]).config;
+              programs.nvf.settings = (import conf).config;
             };
           };
       };
