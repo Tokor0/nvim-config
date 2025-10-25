@@ -60,6 +60,8 @@
 
     snippets.luasnip.enable = true;
 
+    autopairs.nvim-autopairs.enable = true;
+
     languages = {
       enableFormat = true;
       enableTreesitter = true;
@@ -84,6 +86,9 @@
         enable = true;
         lsp.server = "pyright";
       };
+    };
+
+    lazy.plugins = {
     };
   };
 }
