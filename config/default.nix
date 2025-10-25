@@ -5,4 +5,5 @@
 
     ./lang
   ];
+  config.vim = { };
 }
