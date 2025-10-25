@@ -29,20 +29,25 @@
             }).neovim;
         };
       flake = {
-        nixosModules.default =
-          { lib, ... }:
-          {
-            imports = [ inputs.nvf.nixosModules.default ];
-            config = {
-              programs.nvf.settings = lib.mkDefault (import conf).config;
-            };
-          };
+        #nixosModules.default =
+        #  { lib, ... }:
+        #  {
+        #    imports = [ inputs.nvf.nixosModules.default ];
+        #    config = {
+        #      programs.nvf.settings = lib.mkDefault (import conf).config;
+        #    };
+        #  };
         homeModules.default =
-          { ... }:
+          { lib, ... }:
           {
             imports = [ inputs.nvf.homeManagerModules.default ];
             config = {
-              programs.nvf.settings = (import conf).config;
+              programs.nvf.settings =
+                lib.evalModules
+                  {
+                    modules = [ conf ];
+                  }
+                  .config;
             };
           };
       };

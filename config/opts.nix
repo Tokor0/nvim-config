@@ -5,5 +5,5 @@
       shiftwidth = 0;
       expandtab = true;
     };
-  }
+  };
 }

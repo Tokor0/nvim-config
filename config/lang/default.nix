@@ -1,5 +1,5 @@
 {
-  import = [
+  imports = [
     ./lang.nix
     ./lsp.nix
   ];
