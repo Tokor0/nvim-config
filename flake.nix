@@ -42,7 +42,7 @@
           {
             imports = [ inputs.nvf.homeManagerModules.default ];
             config = {
-              programs.nvf.settings = (mergeAttrsList [
+              programs.nvf.settings = (lib.attrsets.mergeAttrsList [
                 import ./config/opts.nix
                 import ./config/ui.nix
                 import ./config/lang/lang.nix
