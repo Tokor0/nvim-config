@@ -45,6 +45,7 @@
               programs.nvf.settings =
                 (lib.evalModules {
                   modules = [ conf ];
+                  _module.check = false;
                 }).config;
             };
           };
