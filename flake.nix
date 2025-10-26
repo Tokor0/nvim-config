@@ -38,11 +38,11 @@
         #    };
         #  };
         homeModules.default =
-          { lib, ... }:
+          { pkgs, lib, ... }:
           {
             imports = [ inputs.nvf.homeManagerModules.default ];
             config = {
-              programs.nvf.settings = (import conf).config;
+              programs.nvf.settings = ((import conf) pkgs).config;
             };
           };
       };
