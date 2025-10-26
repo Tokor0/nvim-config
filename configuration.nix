@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   config.vim = {
 
@@ -62,6 +63,10 @@
 
     autopairs.nvim-autopairs.enable = true;
 
+    diagnostics = {
+      enable = true;
+    };
+
     languages = {
       enableFormat = true;
       enableTreesitter = true;
@@ -89,6 +94,10 @@
     };
 
     lazy.plugins = {
+      "scnvim" = {
+        package = pkgs.vimPlugins.scnvim;
+        setupModule = "scnvim";
+      };
     };
   };
 }
