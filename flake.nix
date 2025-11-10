@@ -42,7 +42,7 @@
           {
             imports = [ inputs.nvf.homeManagerModules.default ];
             config = {
-              programs.nvf.settings = ((import conf) pkgs).config;
+              programs.nvf.settings = (import conf).config;
             };
           };
       };

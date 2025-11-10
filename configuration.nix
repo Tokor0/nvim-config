@@ -1,4 +1,3 @@
-{ pkgs, ... }:
 {
   config.vim = {
 
@@ -93,11 +92,5 @@
       };
     };
 
-    lazy.plugins = {
-      "scnvim" = {
-        package = pkgs.vimPlugins.scnvim;
-        setupModule = "scnvim";
-      };
-    };
   };
 }
