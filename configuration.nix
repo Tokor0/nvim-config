@@ -90,6 +90,18 @@
         enable = true;
         lsp.server = "pyright";
       };
+      clang = {
+        enable = true;
+      };
+      bash = {
+        enable = true;
+      };
+      lua = {
+        enable = true;
+      };
+      java = {
+        enable = true;
+      };
     };
 
   };
