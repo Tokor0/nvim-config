@@ -73,35 +73,28 @@
 
       nix = {
         enable = true;
-        lsp.server = "nixd";
-        format.type = "nixfmt";
-      };
-      rust = {
-        enable = true;
+        lsp.servers = [ "nixd" ];
+        format.type = [ "nixfmt" ];
       };
       typst = {
         enable = true;
-        format.type = "typstyle";
+        format.type = [ "typstyle" ];
         extensions.typst-preview-nvim.setupOpts = {
           open_cmd = "firefox %s -P typst-preview";
         };
       };
       python = {
         enable = true;
-        lsp.server = "pyright";
+        lsp.servers = [ "pyright" ];
       };
-      clang = {
-        enable = true;
-      };
-      bash = {
-        enable = true;
-      };
-      lua = {
-        enable = true;
-      };
-      java = {
-        enable = true;
-      };
+      bash.enable = true;
+      clang.enable = true;
+      json.enable = true;
+      lua.enable = true;
+      markdown.enable = true;
+      qml.enable = true;
+      rust.enable = true;
+      yaml.enable = true;
     };
 
   };
