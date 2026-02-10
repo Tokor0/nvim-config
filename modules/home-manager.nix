@@ -5,7 +5,7 @@
     inputs.flake-parts.flakeModules.modules
   ];
   flake.modules.homeManager.default =
-    { inputs, config, ... }:
+    { config, ... }:
     {
       imports = [
         inputs.nvf.homeManagerModules.default
