@@ -8,6 +8,6 @@
     #{ config, ... }:
     {
       imports = [ inputs.nvf.homeManagerModules.default ];
-      programs.nvf.settings = (import inputs.self.nvf-config).config;
+      programs.nvf.settings = (import inputs.self.nvf-config);
     };
 }
