@@ -1,11 +1,11 @@
-{ inputs, ... }:
+{ inputs, config, ... }:
 {
   imports = [
     inputs.home-manager.flakeModules.home-manager
     inputs.flake-parts.flakeModules.modules
   ];
   flake.modules.homeManager.default =
-    { config, ... }:
+    #{ config, ... }:
     {
       imports = [
         inputs.nvf.homeManagerModules.default
