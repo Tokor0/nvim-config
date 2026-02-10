@@ -7,9 +7,7 @@
   flake.modules.homeManager.default =
     #{ config, ... }:
     {
-      imports = [
-        inputs.nvf.homeManagerModules.default
-      ];
-      programs.nvf.settings = (import config.flake.nvf-config).config;
+      imports = [ inputs.nvf.homeManagerModules.default ];
+      programs.nvf.settings = config.flake.nvf-config.config;
     };
 }
