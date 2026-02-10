@@ -8,6 +8,6 @@
     #{ config, ... }:
     {
       imports = [ inputs.nvf.homeManagerModules.default ];
-      programs.nvf.settings = config.nvf-config;
+      programs.nvf.settings = config.flake.nvf-config;
     };
 }
